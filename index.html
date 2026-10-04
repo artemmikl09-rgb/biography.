@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Биография — галерея и аккордеон</title>
+  <style>
+    :root {
+      --bg-color: #f5f7fa;
+      --card-bg: #ffffff;
+      --text-main: #2c3e50;
+      --accent: #3498db;
+      --border: #ecf0f1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Фото профиля */
+    .profile-photo-wrapper {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 30px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .profile-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Аккордеон */
+    .accordion-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .accordion-header {
+      background: #fff;
+      padding: 18px 24px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .accordion-header:hover {
+      background: #fafafa;
+    }
+
+    .accordion-icon {
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-item.open .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      padding: 0 24px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+      background: #fff;
+    }
+
+    .accordion-content.show {
+      padding: 20px 24px 28px;
+      max-height: 800px; /* достаточно для типичного контента */
+    }
+
+    /* Галерея работ */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .work-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
+
+    .work-caption {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted, #7f8c8d);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: #7f8c8d;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .works-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Янова Арина Михайловна </h1>
+      <p class="subtitle">Преподователь,дизайнер</p>
+
+      <!-- Фото человека -->
+      <div class="profile-photo-wrapper">
+        <!-- ВСТАВЬ СВОЁ ФОТО: замени photo.jpg на имя своего файла -->
+        <img src="photo.jpg" alt="Фото Ивана Иванова" />
+      </div>
+    </header>
+
+    <article>
+      <!-- О себе -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          О себе
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p>
+            Привет! Я Иван, занимаюсь разработкой и преподаванием. Люблю простые и понятные решения, 
+            объяснять сложное простыми словами. В свободное время пишу небольшие проекты, читаю техническую литературу.
+          </p>
+        </div>
+      </div>
+
+      <!-- Навыки -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Навыки
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <ul style="padding-left: 18px; margin-top: 10px;">
+            <li>HTML / CSS — адаптивная вёрстка</li>
+            <li>JavaScript — скрипты и небольшие приложения</li>
+            <li>Python — автоматизация, анализ данных</li>
+            <li>Git — работа с репозиториями</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Образование и опыт -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Образование и опыт
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <ul style="padding-left: 18px; margin-top: 10px;">
+            <li><strong>2020–2024:</strong> Университет, «Информатика и вычислительная техника»</li>
+            <li><strong>2023–н.в.:</strong> Преподавание основ веб-разработки</li>
+            <li><strong>Проекты:</strong> учебные сайты, телеграм-боты, скрипты автоматизации</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Работы/проекты (галерея фото) -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Работы и проекты
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <p style="margin-bottom: 20px;">
+            Примеры моих работ и проектов. Ниже — галерея с миниатюрами.
+          </p>
+          <div class="works-grid">
+            <!-- Работа 1 -->
+            <div class="work-item">
+              <!-- ВСТАВЬ ФОТО РАБОТЫ: замени work1.jpg -->
+              <img src="work1.jpg" alt="Проект 1" />
+              <div class="work-caption">Лендинг для стартапа</div>
+            </div>
+            <!-- Работа 2 -->
+            <div class="work-item">
+              <img src="work2.jpg" alt="Проект 2" />
+              <div class="work-caption">Телеграм-бот на Python</div>
+            </div>
+            <!-- Работа 3 -->
+            <div class="work-item">
+              <img src="work3.jpg" alt="Проект 3" />
+              <div class="work-caption">Скрипт автоматизации отчётов</div>
+            </div>
+            <!-- Работа 4 -->
+            <div class="work-item">
+              <img src="work4.jpg" alt="Проект 4" />
+              <div class="work-caption">Учебный сайт-портфолио</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Контакты -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Контакты
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-content">
+          <ul style="padding-left: 18px; margin-top: 10px;">
+            <li>Email: example@mail.ru</li>
+            <li>Telegram: @ivan_dev</li>
+            <li>GitHub: github.com/ivan-dev</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <footer>
+      &copy; 2024 Янова Арина Михайловна. Все права защищены.
+    </footer>
+  </div>
+
+  <script>
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      const content = item.querySelector('.accordion-content');
+
+      if (item.classList.contains('open')) {
+        item.classList.remove('open');
+        content.classList.remove('show');
+        return;
+      }
+
+      // Закрываем все остальные
+      const allItems = document.querySelectorAll('.accordion-item');
+      allItems.forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.accordion-content').classList.remove('show');
+      });
+
+      item.classList.add('open');
+      content.classList.add('show');
+    }
+  </script>
+</body>
+</html>
